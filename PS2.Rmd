@@ -42,7 +42,7 @@ ggplot(data = nc, aes(x = weeks, y = weight)) +
 ```
 
 ## Excercise 2
-There is a positive relationship between these 2 variables
+There is a positive relationship between these 2 variables, which means as the length of pregnancy increases, the birth weight of the baby also increases. 
 
 ## Excercise 3
 ```{r}
@@ -55,9 +55,9 @@ ggplot(data = nc, aes(x = weeks, y = gained)) +
 ## Excercise 4
 a) It delineated the premie babies versus the full term babies, with a very obvious visual symbol (different colors).
 
-b) 3
+b) 3 variables are displayed (premie, pregnancy length, maternal weight gain)
 
-c) 36 weeks
+c) The premie/full term cutoff appears to be around 36 weeks.
 
 ## Excercise 5
 ```{r}
@@ -67,7 +67,7 @@ ggplot(data = nc, aes(x = mage, y = weight, color = gender)) +
        title = "Relationship between mother's age and weight of newborns")
 ```
 
-There isn't a strong relationship between mother's age and birth weight of newborns.
+There doesn't appear to be a strong relationship between mother's age and birth weight of newborns. This is evident from the lack of upward trending (towards the 'northeast' quadrant) and lack of downward trending (towards the 'southeast' quadrant) in the data. 
 
 ## Histograms
 
@@ -86,11 +86,11 @@ ggplot(data = nc, aes(x = weeks))+
 
 
 ## Excercise 6
-a) how often each number of weeks occurs in the dataset
+a) The histogram is counting the frequency of each pregancy duration (measured in weeks) in the dataset.
 
-b) 38 weeks
+b) 38 weeks appears to be the average pregnancy length.
 
-c) if the binwidth were 100, there would be one bin, and all 800 cases would be in it.
+c) If the binwidth were 100, there would be one bin, and all 800 cases would be in it.
 
 
 ## Excercise 7
@@ -117,7 +117,7 @@ ggplot(data = nc, aes(x = weight)) +
   facet_wrap(~ gender, ncol = 1)
 ```
 
-Male babies tend to have a slightly higher average weight.
+Male babies tend to have a slightly higher average weight. This is evident because there is similar symmetry in the male and female histograms, but the center of the male histogram (the peak bin) is slightly higher. 
 
 ## Boxplots
 Boxplot of weight gained by mothers with male vs female babies. The length of the box is called the interquartile range (IQR)--it represents the middle 50% of the data set. Bottom half of box is 25 percentile to 50th percentile (the median). Top of box is 75th percentile, so from the  middle to top of box is 50th percentile to 75th percentile. Lines beyond and below the box represent values above 75th percentile and below 25th percentile, respectively. These whiskers never extend more than 1.5 IQRs from the box ends. The dots are outliers. 
@@ -133,7 +133,7 @@ ggplot(data = nc, aes(x = mature, y = gained)) +
        title = "Relationship between weight gained and mother maturity")
 ```
 
-The median weight gained for Young moms is higher. 
+The median weight gained for Young moms is higher. This is evident because the middle line in the young mom's boxplot is higher than that for mature mom's. 
 
 ## Excercise 10
 ```{r}
@@ -163,7 +163,8 @@ ggplot(data = nc, aes(x = weight, y = whitemom)) +
        title = "Weight of baby by white/nonwhite mother")
 ```
 
-The median birth weight for babies with white moms is higher. 
+The median birth weight for babies with white moms is higher. This is evident because the middle line in the white mom's boxplot is higher than that for nonwhite mom's. 
+
 
 ## Excercise 13
 ```{r}
@@ -173,4 +174,4 @@ ggplot(data = nc, aes(x = mage, y = weeks)) +
        title = "Relationship between mother age & pregnancy duration")
 ```
 
-No, there is not a strong negative correlation between mother's age and the duration of pregnancy. 
+No, there is not a strong negative correlation between mother's age and the duration of pregnancy. This is evident because there is no strong trending (towards the 'northeast' or 'southeast' corner of the graph, which would indicate a positive or negative correlation, respectively).
