@@ -1,0 +1,176 @@
+---
+title: "Homework 2"
+author: 'Steph Jordan'
+output:
+  html_document:
+    df_print: paged
+---
+Loading necessary libraries
+```{r}
+library(dplyr)
+library(ggplot2)
+library(readr)
+```
+
+Bringing in NC birth data
+```{r}
+nc <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTm2WZwNBoQdZhMgot7urbtu8eG7tzAq-60ZJsQ_nupykCAcW0OXebVpHksPWyR4x8xJTVQ8KAulAFS/pub?gid=202410847&single=true&output=csv")
+```
+
+Checking out ('glimpsing') nc data set
+```{r}
+glimpse(nc)
+```
+## Excercise 1
+Habit is a character. Visits is a double (a decimal number).
+
+## Graphs
+
+## Scatterplots
+Making a scatterplot of weeks and weight
+```{r}
+ggplot(data = nc, aes(x = weeks, y = weight)) + 
+  geom_point()
+```
+
+Adding labels to our scatterplot
+```{r}
+ggplot(data = nc, aes(x = weeks, y = weight)) + 
+  geom_point() + 
+  labs(x = "Length of pregnancy (in weeks)", y = "Birth weight of baby (lbs)", 
+       title = "Relationship between pregnancy duration and newborn weight")
+```
+
+## Excercise 2
+There is a positive relationship between these 2 variables
+
+## Excercise 3
+```{r}
+ggplot(data = nc, aes(x = weeks, y = gained)) + 
+  geom_point() + 
+  labs(x = "Length of pregnancy (in weeks)", y = "Weight gained by mother (lbs)", 
+       title = "Pregnancy duration vs weight gained by mother")
+```
+
+## Excercise 4
+a) It delineated the premie babies versus the full term babies, with a very obvious visual symbol (different colors).
+
+b) 3
+
+c) 36 weeks
+
+## Excercise 5
+```{r}
+ggplot(data = nc, aes(x = mage, y = weight, color = gender)) + 
+  geom_point() + 
+  labs(x = "Mother's age (in years)", y = "Birth weight of newborns (lbs)", 
+       title = "Relationship between mother's age and weight of newborns")
+```
+
+There isn't a strong relationship between mother's age and birth weight of newborns.
+
+## Histograms
+
+Histogram (counts) of weeks
+```{r}
+ggplot(data = nc, aes(x = weeks))+ 
+  geom_histogram()
+```
+
+
+Changing colors and binwidth
+```{r}
+ggplot(data = nc, aes(x = weeks))+ 
+  geom_histogram(binwidth = 1, color = "white", fill = "steelblue")
+```
+
+
+## Excercise 6
+a) how often each number of weeks occurs in the dataset
+
+b) 38 weeks
+
+c) if the binwidth were 100, there would be one bin, and all 800 cases would be in it.
+
+
+## Excercise 7
+
+```{r}
+ggplot(data = nc, aes(x = weight))+ 
+  geom_histogram(binwidth = 1, color = "white", fill = "steelblue") + 
+  labs(x = "Weight of newborn (lbs)", y = "Count", 
+       title = "Frequency of newborn weights (lbs)")
+```
+## Faceting
+
+Here, we differentiate between cases with mother status "young" and mother status "mature" by using faceting. These two histograms will share the same categorical variable, but will be split into two plots based on the value cases possess for the 'mature' variable.
+```{r}
+ggplot(data = nc, aes(x = weeks)) +
+  geom_histogram(binwidth = 1, color = "white", fill = "steelblue") +
+  facet_wrap(~ mature, ncol = 1)
+```
+
+## Excercise 8
+```{r}
+ggplot(data = nc, aes(x = weight)) +
+  geom_histogram(binwidth = 0.5, color = "white", fill = "steelblue") +
+  facet_wrap(~ gender, ncol = 1)
+```
+
+Male babies tend to have a slightly higher average weight.
+
+## Boxplots
+Boxplot of weight gained by mothers with male vs female babies. The length of the box is called the interquartile range (IQR)--it represents the middle 50% of the data set. Bottom half of box is 25 percentile to 50th percentile (the median). Top of box is 75th percentile, so from the  middle to top of box is 50th percentile to 75th percentile. Lines beyond and below the box represent values above 75th percentile and below 25th percentile, respectively. These whiskers never extend more than 1.5 IQRs from the box ends. The dots are outliers. 
+```{r}
+ggplot(data = nc, aes(x = gender, y = gained)) +
+  geom_boxplot(fill = "sienna")
+```
+## Excercise 9
+```{r}
+ggplot(data = nc, aes(x = mature, y = gained)) +
+  geom_boxplot(fill = "sienna") + 
+  labs(x = "Maturity status of Mother", y = "Weight gained by mother (lbs)", 
+       title = "Relationship between weight gained and mother maturity")
+```
+
+The median weight gained for Young moms is higher. 
+
+## Excercise 10
+```{r}
+ggplot(data = nc, aes(x = weeks, y = habit)) +
+  geom_boxplot(fill = "sienna") + 
+  labs(x = "preganacy duration (weeks)", y = "Smoker Status", 
+       title = "Duration of preganacy by mother smoker status")
+```
+
+Smoker mothers have more variability in length of pregnancy, since the whiskers for their plot are longer.
+
+## Excercise 11
+```{r}
+ggplot(data = nc, aes(x = fage))+ 
+  geom_histogram(binwidth = 1, color = "white", fill = "steelblue") + 
+  labs(x = "Father's age", y = "Count", 
+       title = "Frequency of different ages of Fathers")
+```
+
+Father's age is mostly symmetrical, with a slight rightward skew. 
+
+## Excercise 12
+```{r}
+ggplot(data = nc, aes(x = weight, y = whitemom)) +
+  geom_boxplot(fill = "sienna") + 
+  labs(x = "weight (lbs)", y = "white/nonwhite mom", 
+       title = "Weight of baby by white/nonwhite mother")
+```
+
+The median birth weight for babies with white moms is higher. 
+
+## Excercise 13
+```{r}
+ggplot(data = nc, aes(x = mage, y = weeks)) + 
+  geom_point() + 
+  labs(x = "Mother age", y = "Duration of pregnancy (weeks)", 
+       title = "Relationship between mother age & pregnancy duration")
+```
+
+No, there is not a strong negative correlation between mother's age and the duration of pregnancy. 
